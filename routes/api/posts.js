@@ -14,7 +14,7 @@ const validatePostInput = require("../../validation/post");
 // @route   GET api/posts/test
 // @desc    Tests post route
 // @access  Public
-router.get("/test", (req, res) => res.json({ msg: "Posts Works!" }));
+router.get("/test", (req, res) => res.json({ msg: "Posts Works" }));
 
 // @route   GET api/posts
 // @desc    Get posts
@@ -31,7 +31,6 @@ router.get("/", (req, res) => {
 // @access  Public
 router.get("/:id", (req, res) => {
   Post.findById(req.params.id)
-    .sort({ date: -1 })
     .then(post => res.json(post))
     .catch(err =>
       res.status(404).json({ nopostfound: "No post found with that ID" })
@@ -110,6 +109,7 @@ router.post(
 
           // Add user id to likes array
           post.likes.unshift({ user: req.user.id });
+
           post.save().then(post => res.json(post));
         })
         .catch(err => res.status(404).json({ postnotfound: "No post found" }));
@@ -173,7 +173,7 @@ router.post(
           text: req.body.text,
           name: req.body.name,
           avatar: req.body.avatar,
-          user: req.body.id
+          user: req.user.id
         };
 
         // Add to comments array
