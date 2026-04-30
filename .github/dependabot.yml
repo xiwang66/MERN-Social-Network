@@ -10,6 +10,10 @@ updates:
       dependency-updates:
         patterns:
           - "*"
+    ignore:
+      - dependency-name: "*"
+        update-types:
+          - "version-update:semver-major"
     labels:
       - "dependencies"
       - "github-actions"
@@ -22,6 +26,10 @@ updates:
       dependency-updates:
         patterns:
           - "*"
+    ignore:
+      - dependency-name: "*"
+        update-types:
+          - "version-update:semver-major"
     labels:
       - "dependencies"
   - package-ecosystem: "npm"
@@ -33,5 +41,9 @@ updates:
       dependency-updates:
         patterns:
           - "*"
+    ignore:
+      - dependency-name: "*"
+        update-types:
+          - "version-update:semver-major"
     labels:
       - "dependencies"
