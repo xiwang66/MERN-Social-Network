@@ -10,7 +10,7 @@ permissions:
 
 jobs:
   dependabot:
-        if: github.event.pull_request.user.login == 'dependabot[bot]' || github.event.pull_request.user.login == 'app/dependabot'
+    if: github.event.pull_request.user.login == 'dependabot[bot]' || github.event.pull_request.user.login == 'app/dependabot'
     runs-on: ubuntu-latest
     steps:
       - name: Dependabot metadata
@@ -26,9 +26,9 @@ jobs:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           PR_URL: ${{ github.event.pull_request.html_url }}
 
-      - name: Enable auto-merge for patch and minor updates
+            - name: Merge patch and minor updates
         if: steps.metadata.outputs.update-type == 'version-update:semver-patch' || steps.metadata.outputs.update-type == 'version-update:semver-minor'
-        run: gh pr merge --auto --merge "$PR_URL"
+                run: gh pr merge --merge "$PR_URL"
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           PR_URL: ${{ github.event.pull_request.html_url }}
